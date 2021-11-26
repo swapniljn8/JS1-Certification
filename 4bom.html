@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Browser Object Model</title>
+    </head>
+
+    <body id= "bodytag">
+        <div id = "divtag">
+            
+            <button id = "btntag" onclick="showAlert()"> click</button>
+            <a id = "link" href="https://www.google.com">google</a>
+            <button id = "stopbtn" onclick="stopBlinking()"> Stop Blinking</button>
+            <!-- <div id = "msg"></div> -->
+        </div>
+
+    </body>
+    <script>
+       /* window.alert('Hey you just reloaded the window');
+        window
+          |
+          |
+          |
+       (document, screeen)
+        let promtvar = window.prompt();
+        let confirmvar = window.confirm('Are you sure you want to reload the window?');
+        let message = confirmvar ? 'You pressed ok' : 'You pressed cancel';
+        console.log(message , ' & provided the following input:', promtvar);*/
+        let googletext = document.querySelector('#link');
+        let intervalID;
+        function showAlert() {
+            console.log('clicked the button');
+            window.setTimeout(alert, 3000, 'Show alert timeout');
+            console.log('after alert the button');
+        }
+        
+        function changeColor() {
+            intervalID = setInterval(() => {
+                googletext.style.color = googletext.style.color == 'red' ? 'blue' : 'red';
+            }, 1000);
+        }
+        function stopBlinking() {
+            clearInterval(intervalID);
+        }
+        window.addEventListener('load', changeColor);//'load' ---> it is the standard function.
+
+
+
+
+    </script>
+
+</html>

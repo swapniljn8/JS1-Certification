@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Custom Event</title>
+    </head>
+
+    <body id= "bodytag">
+        <div id = "divtag">
+            <button id = "btntag"> click</button>
+            <div id = "msg"></div>
+        </div>
+
+    </body>
+    <script>
+        let btnEvent = document.querySelector('#btntag');
+        let msgEvent = document.querySelector('#msg');
+        btnEvent.addEventListener('click', (event) => {
+            let writeMessage = new CustomEvent('showMsg',{
+                detail : "You just clicked the Button"
+            });
+            btnEvent.dispatchEvent(writeMessage);
+        });
+        btnEvent.addEventListener('showMsg', (x) => {
+            msgEvent.innerText = x.detail;
+        })
+
+
+        
+            
+        
+
+
+
+    </script>
+
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Event Object</title>
+    </head>
+
+    <body id= "bodytag">
+        <div id = "divtag">
+            <button id = "btntag"> click</button>
+            <a id = "link" href="https://www.google.com">google</a>
+            <div id = "msg"></div>
+        </div>
+
+    </body>
+    <script>
+        let btnEvent = document.querySelector('#btntag');
+        let divEvent = document.querySelector('#divtag');
+        let alink = document.querySelector('#link');
+        btnEvent.addEventListener('click', (event) => {
+            console.log('btnEvent target=', event.target);
+            console.log('btnEvent currentTarget=', event.currentTarget);
+
+        });
+        divEvent.addEventListener('click', (eve)=>{
+            console.log('divEvent target =', eve.target);
+            console.log('divEvent currenttarget =', eve.currentTarget);
+        });
+        alink.addEventListener('click', (event)=> {
+            console.log('alink clicked');
+           event.preventDefault();
+            event.stopPropagation();
+        });
+        
+
+    </script>
+
+</html>

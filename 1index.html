@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Browser and Events</title>
+</head>
+
+<body>
+    <!-- <div class= "demo">first div</div>
+    <div class= "demo">second div</div> -->
+    <button id = "buttonid"> Click Here! </button>
+    <div id = "text"></div>
+</body>
+<script>    
+    let buttonEventdiv = document.querySelectorAll('div');
+  //console.log(buttonEventdiv);
+
+    let buttonEvent = document.querySelector('#buttonid');
+    buttonEvent.onclick = () => {
+        alert('You just clicked the button');
+    }
+
+    let divtext = document.querySelector('#text');
+    console.log('buttonEvent', buttonEvent);
+    console.log('window', window.location.href);//current page URL
+    console.log('window', window.location);
+    divtext.innerText = window.location;
+    document.addEventListener('DOMContentLoaded', (event) => {
+        console.log('This DOM is fully loaded');
+        console.log('event = ',event.target);
+    }
+    );
+    window.addEventListener('load', (event) => {
+        console.log('This DOM is fully loaded');
+        console.log('event = ',event.target);
+    }
+    );
+
+
+</script>
+
+</html>

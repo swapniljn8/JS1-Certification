@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <title>Async Programming</title>
+</head>
+
+<body>
+   <div id = "text"></div>
+   <script type="text/javascript" src="asyncJS.js">
+//sync programming
+/*  let num = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+let filteredVal = num.filter((item) => item > 4);
+let divtext = document.querySelector('#text');
+divtext.innerHTML = filteredVal;
+console.log(filteredVal);*/
+var divtext = document.querySelector('#text');
+//divtext.innerHTML = filteredVal;
+
+//Promise creation
+/*
+var complete = true;
+var promiseResponse = new Promise(function (resolve, rejecte) {
+  setTimeout(() => {
+    <!-- if (complete) { -->
+        divtext.innerHTML = resolve('Promise completed');
+    } else {
+        divtext.innerHTML =  rejecte('Promise Rejected');
+    }
+  }, 1000)
+});
+promiseResponse;
+*/
+
+function testPromiseConsumption(completed) {
+    return new Promise((resolve, rejected) => {
+        setTimeout(() => {
+            if(completed) {
+                resolve('promise completed.10');
+                
+            }
+            else {
+                rejected('promise rejected');
+            }
+        }, 5000);
+        
+    })
+}
+
+ //capturing the promise 
+var prm = testPromiseConsumption(true);
+prm.then(success => console.log(success), failure => console.log('then = ', failure))
+.catch(error => console.log('catch = ', error))
+
+
+//promise chaining
+//var prm = testPromiseConsumption(true);
+prm.then((result) => {
+    let arr = result.split('.');
+    console.log('first then = ', parseInt(arr[1]));
+    return parseInt(arr[1])*10;
+}).then((result1)=> {
+    console.log('second then',result1);
+    return parseInt(result1)*10;
+}).then((result2)=> {
+    console.log('third then',result2);
+    throw new Error('explicit error thrown');
+}).catch((error)=> {
+    console.error('combined error : ', error);    
+})
+
+
+
+//async and await : introduced in ES7
+async function abc() {
+    let promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve('promise resolved');
+      }, 5000);
+    });
+    console.log('start');
+    let greeting = await promise;
+    console.log('end');
+  }
+  abc();
+  /*output
+start
+Promise { <pending> }
+end
+which shows that await holds the execution until the Promise is not resolved
+*/
+
+
+
+//JOB queue
+//always give the priority to Promise over other async process.
+console.log('start');
+setTimeout(() => {
+  console.log('timeout');
+}, 0);
+let prm1 = new Promise((resolve, reject) => {
+  resolve();
+  console.log('promise1');
+});
+prm1.then((result1) => {
+  console.log('inside prm1 then');
+});
+let prm2 = new Promise((resolve, reject) => {
+  resolve();
+  console.log('promise2');
+});
+prm2.then((result2) => {
+  console.log('inside prm2 then');
+});
+console.log('end');
+
+/*
+start
+promise1
+promise2
+end
+inside prm1 then
+inside prm2 then
+timeout
+
+
+*/
+  
+</script>
+</body>
+
+
+</html>

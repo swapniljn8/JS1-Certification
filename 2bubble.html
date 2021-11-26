@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <title>Bubble Event</title>
+    </head>
+
+    <body id= "bodytag">
+        <div id = "divtag">
+            <button id = "btntag"> click</button>
+        </div>
+
+    </body>
+    <script>
+        let btnEvent = document.querySelector('#btntag');
+        let divEvent = document.querySelector('#divtag');
+        let bodyEvent = document.querySelector('#bodytag');
+        
+        btnEvent.addEventListener('click', (event) => {
+            console.log('btn');
+            alert('btn Event called');
+        });
+        divEvent.addEventListener('click', (event) => {
+            console.log('div');
+            alert('Div Event called');
+        });   
+        bodyEvent.addEventListener('click', (event) => {
+            console.log('body');
+            alert('body Event called');
+        }, true);        
+            
+        
+
+
+
+    </script>
+
+</html>
